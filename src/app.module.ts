@@ -3,12 +3,11 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ModbusModule } from './modbus/modbus.module';
-import { GraphqlModule } from './graphql/graphql.module';
-import { HelloResolver } from './hello/hello.resolver';
+import { ApiModule } from './api/api.module';
 
 @Module({
-  imports: [ModbusModule, GraphqlModule],
+  imports: [ModbusModule, ApiModule],
   controllers: [AppController],
-  providers: [AppService, HelloResolver],
+  providers: [AppService],
 })
 export class AppModule {}

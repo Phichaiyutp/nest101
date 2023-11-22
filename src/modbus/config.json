@@ -37,30 +37,30 @@
     },
     {
       "deviceId" : 2,
-      "deviceName": "RK330-05CD_P001",
+      "deviceName": "RK330-05CD_P002",
       "deviceGroup": "Environment_Sensor",
       "stationName" : "Pole_01",
-      "host": "172.16.97.7",
+      "host": "172.16.97.39",
       "port": 8899,
       "unitId": 9,
       "addresses": [
-        {"label":"Temp","datatype":"Int16","swap":"BE","unit":"°C","scale": 0.1,"offset":-40,"fc":3, "address": 0, "length": 1},
-        {"label":"Humd","datatype":"Int16","swap":"BE","unit":"%","scale": 0.1,"offset":0,"fc":3, "address": 1, "length": 1}
+        {"label":"Temp","datatype":"UInt16","swap":"BE","unit":"°C","scale": 0.1,"offset":-40,"fc":3, "address": 0, "length": 1},
+        {"label":"Humd","datatype":"UInt16","swap":"BE","unit":"%","scale": 0.1,"offset":0,"fc":3, "address": 1, "length": 1}
       ],
       "interval" : 5000
     },
     {
       "deviceId" : 3,
-      "deviceName": "RK330-02B_P001",
+      "deviceName": "RK330-02B_P002",
       "deviceGroup": "Environment_Sensor",
-      "stationName" : "Pole_01",
-      "host": "172.16.97.7",
+      "stationName" : "Pole_02",
+      "host": "172.16.97.39",
       "port": 8899,
       "unitId": 6,
       "addresses": [
-        {"label":"PM1.0","datatype":"Int8","swap":"BE","unit":"","scale": 0.1,"offset":0,"fc":3, "address": 0, "length": 1},
-        {"label":"PM2.5","datatype":"Int8","swap":"BE","unit":"","scale": 0.1,"offset":0,"fc":3, "address": 1, "length": 1},
-        {"label":"PM10","datatype":"Int8","swap":"BE","unit":"","scale": 0.1,"offset":0,"fc":3, "address": 2, "length": 1}
+        {"label":"PM1.0","datatype":"UInt16","swap":"BE","unit":"","scale": 1,"offset":0,"fc":3, "address": 0, "length": 1},
+        {"label":"PM2.5","datatype":"UInt16","swap":"BE","unit":"","scale": 1,"offset":0,"fc":3, "address": 1, "length": 1},
+        {"label":"PM10","datatype":"UInt16","swap":"BE","unit":"","scale": 1,"offset":0,"fc":3, "address": 2, "length": 1}
       ],
       "interval" : 5000
     }

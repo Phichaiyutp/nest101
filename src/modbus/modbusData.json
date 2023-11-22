@@ -2,10 +2,13 @@
   {
     "deviceId": 0,
     "deviceName": "lovato_P001",
+    "deviceGroup": "Power_Meter",
+    "stationName": "Pole_01",
+    "host": "172.16.97.7",
     "members": [
       {
         "label": "Voltage",
-        "value": "215.080",
+        "value": "221.970",
         "unit": "V"
       },
       {
@@ -30,23 +33,27 @@
       },
       {
         "label": "Energy",
-        "value": "1661.291",
+        "value": "1665.067",
         "unit": "kWh"
       }
-    ]
+    ],
+    "ts": 1700634277
   },
   {
     "deviceId": 1,
     "deviceName": "lovato_P002",
+    "deviceGroup": "Power_Meter",
+    "stationName": "Pole_02",
+    "host": "172.16.97.39",
     "members": [
       {
         "label": "Voltage",
-        "value": "234.140",
+        "value": "235.360",
         "unit": "V"
       },
       {
         "label": "Current",
-        "value": "0.424",
+        "value": "0.423",
         "unit": "I"
       },
       {
@@ -66,9 +73,55 @@
       },
       {
         "label": "Energy",
-        "value": "1639.427",
+        "value": "1642.887",
         "unit": "kWh"
       }
-    ]
+    ],
+    "ts": 1700634275
+  },
+  {
+    "deviceId": 2,
+    "deviceName": "RK330-05CD_P002",
+    "deviceGroup": "Environment_Sensor",
+    "stationName": "Pole_01",
+    "host": "172.16.97.39",
+    "members": [
+      {
+        "label": "Temp",
+        "value": "31.100",
+        "unit": "°C"
+      },
+      {
+        "label": "Humd",
+        "value": "49.700",
+        "unit": "%"
+      }
+    ],
+    "ts": 1700634275
+  },
+  {
+    "deviceId": 3,
+    "deviceName": "RK330-02B_P002",
+    "deviceGroup": "Environment_Sensor",
+    "stationName": "Pole_02",
+    "host": "172.16.97.39",
+    "members": [
+      {
+        "label": "PM1.0",
+        "value": "13.000",
+        "unit": ""
+      },
+      {
+        "label": "PM2.5",
+        "value": "24.000",
+        "unit": ""
+      },
+      {
+        "label": "PM10",
+        "value": "30.000",
+        "unit": ""
+      }
+    ],
+    "ts": 1700634275
   }
 ]

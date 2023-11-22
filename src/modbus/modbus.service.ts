@@ -7,6 +7,8 @@ import { Injectable } from '@nestjs/common';
 interface DeviceConfig {
   deviceId: number;
   deviceName: string;
+  deviceGroup: string;
+  stationName: string;
   unitId: number;
   port: number;
   host: string;
@@ -44,26 +46,42 @@ export class ModbusService {
   private createModbusClient(deviceConfig: DeviceConfig) {
     const socket = new net.Socket();
     const client = new Modbus.client.TCP(socket, deviceConfig.unitId);
-    try {
+    socket.setTimeout(5000);
+    
+    const connectToServer = () => {
       socket.connect(deviceConfig.port, deviceConfig.host, () =>
         console.log(
           `Connected to ${deviceConfig.host}:${deviceConfig.port} unitId : ${deviceConfig.unitId}`,
         ),
       );
+    };
+  
+    try {
+      socket.on('timeout', () => {
+        console.error(`Connection to ${deviceConfig.host}:${deviceConfig.port} timed out.`);
+        // ลองเชื่อมต่ออีกครั้ง
+        socket.end();
+        connectToServer();
+      });
+  
+      socket.on('close', () =>
+        console.log(
+          `Connection closed to ${deviceConfig.host}:${deviceConfig.port} unitId : ${deviceConfig.unitId}`,
+        ),
+      );
+  
+      connectToServer(); // เรียกใช้งานฟังก์ชัน connectToServer เพื่อเชื่อมต่อครั้งแรก
     } catch (error) {
       console.error(
         `Error connecting to ${deviceConfig.host}:${deviceConfig.port}:`,
         error,
       );
     }
-    socket.on('close', () =>
-      console.log(
-        `Connection closed to ${deviceConfig.host}:${deviceConfig.port} unitId : ${deviceConfig.unitId}`,
-      ),
-    );
+  
     const IntervalByDevice: NodeJS.Timeout[] = [];
     return { client, socket, deviceConfig, IntervalByDevice };
   }
+  
 
   private async initialize() {
     try {
@@ -81,15 +99,27 @@ export class ModbusService {
     swap: string,
   ): number {
     const byteOffset = 0;
-    const readFunction =
-      swap === 'BE' ? buffer[`read${datatype}BE`] : buffer[`read${datatype}LE`];
-
+    let readFunction: { call: (arg0: Buffer, arg1: number) => number; };
+    switch (swap) {
+      case 'BE':
+        readFunction = buffer[`read${datatype}BE`];
+        break;
+      case 'LE':
+        readFunction = buffer[`read${datatype}LE`];
+        break;
+      case 'null':
+        readFunction = buffer[`read${datatype}`];
+        break;
+      default:
+        break;
+    }
     if (readFunction) {
       return readFunction.call(buffer, byteOffset);
     } else {
       throw new Error(`Unsupported datatype: ${datatype}`);
     }
   }
+  
 
   private async exportToJson(
     devices: {
@@ -111,7 +141,11 @@ export class ModbusService {
     const device = {
       deviceId: deviceConfig.deviceId,
       deviceName: deviceConfig.deviceName,
+      deviceGroup: deviceConfig.deviceGroup,
+      stationName: deviceConfig.stationName,
+      host: deviceConfig.host,
       members: [] as { label: string; value: string; unit: string }[],
+      ts: Math.floor(Date.now() / 1000),
     };
 
     for (const address of deviceConfig.addresses) {
@@ -180,30 +214,46 @@ export class ModbusService {
   async readDevices() {
     try {
       await this.initialize();
+  
+      if (!this.modbusClients.length) {
+        console.error('No Modbus clients available.');
+        return;
+      }
+  
+      const promises = this.modbusClients.map((modbusClient) => {
+        return new Promise<void>((resolve, reject) => {
+          const intervalId = setInterval(async () => {
+            try {
+              await this.readData(modbusClient, modbusClient.deviceConfig);
+              resolve();
+            } catch (error) {
+              const customError = {
+                info: {
+                  deviceId: modbusClient.deviceConfig.deviceId,
+                  deviceName: modbusClient.deviceConfig.deviceName,
+                  deviceGroup: modbusClient.deviceConfig.deviceGroup,
+                  stationName: modbusClient.deviceConfig.stationName,
+                  host: modbusClient.deviceConfig.host,
+                  port: modbusClient.deviceConfig.port,
+                },
+                error: error,
+              };
+              console.error(customError);
+              reject(customError);
+            }
+          }, modbusClient.deviceConfig.interval);
+          modbusClient.IntervalByDevice[modbusClient.deviceConfig.deviceId] = intervalId;
+        });
+      });
+  
+      // Return a promise that resolves when all modbus clients have been processed
+      return Promise.all(promises);
     } catch (error) {
-      console.error('Error initialize:', error);
+      console.error('Error in readDevices:', error);
+      throw error; // Rethrow the error to indicate a failure
     }
-
-    if (!this.modbusClients.length) {
-      console.error('No Modbus clients available.');
-      return;
-    }
-
-    this.modbusClients.forEach((modbusClient) => {
-      const deviceId: number = modbusClient.deviceConfig.deviceId;
-      modbusClient.IntervalByDevice[deviceId] = setInterval(async () => {
-        try {
-          await this.readData(modbusClient, modbusClient.deviceConfig);
-        } catch (error) {
-          console.error(
-            'Error reading data device name:',
-            modbusClient.deviceConfig.deviceName,
-            error,
-          );
-        }
-      }, modbusClient.deviceConfig.interval);
-    });
   }
+
   async disconnectAllDevices() {
     try {
       this.disconnectModbusClients();
