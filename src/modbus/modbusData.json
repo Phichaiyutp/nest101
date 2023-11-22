@@ -1,0 +1,74 @@
+[
+  {
+    "deviceId": 0,
+    "deviceName": "lovato_P001",
+    "members": [
+      {
+        "label": "Voltage",
+        "value": "215.080",
+        "unit": "V"
+      },
+      {
+        "label": "Current",
+        "value": "0.513",
+        "unit": "I"
+      },
+      {
+        "label": "Power",
+        "value": "0.100",
+        "unit": "W"
+      },
+      {
+        "label": "PF",
+        "value": "0.860",
+        "unit": ""
+      },
+      {
+        "label": "Frequency",
+        "value": "50.000",
+        "unit": "Hz"
+      },
+      {
+        "label": "Energy",
+        "value": "1661.291",
+        "unit": "kWh"
+      }
+    ]
+  },
+  {
+    "deviceId": 1,
+    "deviceName": "lovato_P002",
+    "members": [
+      {
+        "label": "Voltage",
+        "value": "234.140",
+        "unit": "V"
+      },
+      {
+        "label": "Current",
+        "value": "0.424",
+        "unit": "I"
+      },
+      {
+        "label": "Power",
+        "value": "0.090",
+        "unit": "W"
+      },
+      {
+        "label": "PF",
+        "value": "0.860",
+        "unit": ""
+      },
+      {
+        "label": "Frequency",
+        "value": "50.000",
+        "unit": "Hz"
+      },
+      {
+        "label": "Energy",
+        "value": "1639.427",
+        "unit": "kWh"
+      }
+    ]
+  }
+]

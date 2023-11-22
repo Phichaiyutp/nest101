@@ -1,0 +1,67 @@
+[
+    {
+      "deviceId" : 0,
+      "deviceName": "lovato_P001",
+      "deviceGroup": "Power_Meter",
+      "stationName" : "Pole_01",
+      "host": "172.16.97.7",
+      "port": 8899,
+      "unitId": 1,
+      "addresses": [
+        {"label":"Voltage","unit":"V","datatype":"UInt32","swap":"BE","scale": 0.01,"offset":0,"fc":3, "address": 1, "length": 2},
+        {"label":"Current","unit":"I","datatype":"UInt32","swap":"BE","scale": 0.001,"offset":0,"fc":3, "address": 7, "length": 2},
+        {"label":"Power","unit":"W","datatype":"UInt32","swap":"BE","scale": 0.01,"offset":0,"fc":3, "address": 19, "length": 2},
+        {"label":"PF","unit":"","datatype":"UInt32","swap":"BE","scale": 0.01,"offset":0,"fc":3, "address": 37, "length": 2},
+        {"label":"Frequency","datatype":"UInt32","swap":"BE","unit":"Hz","scale": 0.1,"offset":0,"fc":3, "address": 49, "length": 2},
+        {"label":"Energy","datatype":"UInt32","swap":"BE","unit":"kWh","scale": 0.001,"offset":0,"fc":3, "address": 6687, "length": 2}
+      ],
+      "interval" : 5000
+    },
+    {
+      "deviceId" : 1,
+      "deviceName": "lovato_P002",
+      "deviceGroup": "Power_Meter",
+      "stationName" : "Pole_02",
+      "host": "172.16.97.39",
+      "port": 8899,
+      "unitId": 1,
+      "addresses": [
+        {"label":"Voltage","unit":"V","datatype":"UInt32","swap":"BE","scale": 0.01,"offset":0,"fc":3, "address": 1, "length": 2},
+        {"label":"Current","unit":"I","datatype":"UInt32","swap":"BE","scale": 0.001,"offset":0,"fc":3, "address": 7, "length": 2},
+        {"label":"Power","unit":"W","datatype":"UInt32","swap":"BE","scale": 0.01,"offset":0,"fc":3, "address": 19, "length": 2},
+        {"label":"PF","unit":"","datatype":"UInt32","swap":"BE","scale": 0.01,"offset":0,"fc":3, "address": 37, "length": 2},
+        {"label":"Frequency","datatype":"UInt32","swap":"BE","unit":"Hz","scale": 0.1,"offset":0,"fc":3, "address": 49, "length": 2},
+        {"label":"Energy","datatype":"UInt32","swap":"BE","unit":"kWh","scale": 0.001,"offset":0,"fc":3, "address": 6687, "length": 2}
+      ],
+      "interval" : 5000
+    },
+    {
+      "deviceId" : 2,
+      "deviceName": "RK330-05CD_P001",
+      "deviceGroup": "Environment_Sensor",
+      "stationName" : "Pole_01",
+      "host": "172.16.97.7",
+      "port": 8899,
+      "unitId": 9,
+      "addresses": [
+        {"label":"Temp","datatype":"Int16","swap":"BE","unit":"°C","scale": 0.1,"offset":-40,"fc":3, "address": 0, "length": 1},
+        {"label":"Humd","datatype":"Int16","swap":"BE","unit":"%","scale": 0.1,"offset":0,"fc":3, "address": 1, "length": 1}
+      ],
+      "interval" : 5000
+    },
+    {
+      "deviceId" : 3,
+      "deviceName": "RK330-02B_P001",
+      "deviceGroup": "Environment_Sensor",
+      "stationName" : "Pole_01",
+      "host": "172.16.97.7",
+      "port": 8899,
+      "unitId": 6,
+      "addresses": [
+        {"label":"PM1.0","datatype":"Int8","swap":"BE","unit":"","scale": 0.1,"offset":0,"fc":3, "address": 0, "length": 1},
+        {"label":"PM2.5","datatype":"Int8","swap":"BE","unit":"","scale": 0.1,"offset":0,"fc":3, "address": 1, "length": 1},
+        {"label":"PM10","datatype":"Int8","swap":"BE","unit":"","scale": 0.1,"offset":0,"fc":3, "address": 2, "length": 1}
+      ],
+      "interval" : 5000
+    }
+  ]
