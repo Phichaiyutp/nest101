@@ -4,40 +4,9 @@
     "deviceName": "lovato_P001",
     "deviceGroup": "Power_Meter",
     "stationName": "Pole_01",
-    "host": "172.16.97.7",
-    "members": [
-      {
-        "label": "Voltage",
-        "value": "221.970",
-        "unit": "V"
-      },
-      {
-        "label": "Current",
-        "value": "0.513",
-        "unit": "I"
-      },
-      {
-        "label": "Power",
-        "value": "0.100",
-        "unit": "W"
-      },
-      {
-        "label": "PF",
-        "value": "0.860",
-        "unit": ""
-      },
-      {
-        "label": "Frequency",
-        "value": "50.000",
-        "unit": "Hz"
-      },
-      {
-        "label": "Energy",
-        "value": "1665.067",
-        "unit": "kWh"
-      }
-    ],
-    "ts": 1700634277
+    "host": "172.16.97.8",
+    "members": [],
+    "ts": 1700648774
   },
   {
     "deviceId": 1,
@@ -48,22 +17,22 @@
     "members": [
       {
         "label": "Voltage",
-        "value": "235.360",
+        "value": "234.370",
         "unit": "V"
       },
       {
         "label": "Current",
-        "value": "0.423",
+        "value": "1.046",
         "unit": "I"
       },
       {
         "label": "Power",
-        "value": "0.090",
+        "value": "0.230",
         "unit": "W"
       },
       {
         "label": "PF",
-        "value": "0.860",
+        "value": "0.950",
         "unit": ""
       },
       {
@@ -73,11 +42,11 @@
       },
       {
         "label": "Energy",
-        "value": "1642.887",
+        "value": "1643.248",
         "unit": "kWh"
       }
     ],
-    "ts": 1700634275
+    "ts": 1700648774
   },
   {
     "deviceId": 2,
@@ -88,16 +57,16 @@
     "members": [
       {
         "label": "Temp",
-        "value": "31.100",
+        "value": "28.000",
         "unit": "°C"
       },
       {
         "label": "Humd",
-        "value": "49.700",
+        "value": "68.500",
         "unit": "%"
       }
     ],
-    "ts": 1700634275
+    "ts": 1700648774
   },
   {
     "deviceId": 3,
@@ -108,20 +77,20 @@
     "members": [
       {
         "label": "PM1.0",
-        "value": "13.000",
+        "value": "16.000",
         "unit": ""
       },
       {
         "label": "PM2.5",
-        "value": "24.000",
+        "value": "28.000",
         "unit": ""
       },
       {
         "label": "PM10",
-        "value": "30.000",
+        "value": "35.000",
         "unit": ""
       }
     ],
-    "ts": 1700634275
+    "ts": 1700648774
   }
 ]

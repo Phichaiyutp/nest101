@@ -15,7 +15,7 @@ export class ModbusController {
       return { error: 'Error reading data.', details: error };
     }
   }
-  
+
   @Get('disconnect')
   async disconnect() {
     this.modbusService.disconnectAllDevices();
